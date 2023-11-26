@@ -1,0 +1,138 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Transform: 'AWS::Serverless-2016-10-31'
+
+Parameters:
+  ReleaseName:
+    Type: String
+    Default: "v2"
+
+  ReleaseWeight:
+    Type: Number
+    Default: 50
+
+Conditions:
+  FullRelease: !Equals [!Ref ReleaseWeight, 100]
+
+Resources:
+    RequestLambda:
+      Type: AWS::Serverless::Function
+      Properties:
+        Environment:
+          Variables:
+            RELEASE_WEIGHT: !GetAtt NextBucket.DomainName
+        Handler: ./edgeHandlers/originReqHandler.handler
+        Runtime: nodejs18.x
+        Role: !GetAtt LambdaRole.Arn
+        AutoPublishAlias: live
+
+    ResponseLambda:
+      Type: AWS::Serverless::Function
+      Properties:
+        InlineCode:
+            !Sub
+              - |  
+                  exports.handler = async (event) => {
+                    
+                    const res = event.Records[0].cf.response
+                    const req = event.Records[0].cf.request
+
+                    // If the user was chosen for new version, we save 999, otherwise we save the current weight
+                    const cookie = req.origin.s3.domainName == '${NextBucket}'?999:${ReleaseWeight}
+
+                    res.headers['Set-Cookie'] = [{ key: 'Set-Cookie', value: `${ReleaseName}=${!cookie};Max-age=151200;Path=/`}]
+
+                    return res
+                  }
+              - NextBucket: !GetAtt NextBucket.DomainName
+        Handler: index.handler
+        Runtime: nodejs18.x
+        Role: !GetAtt LambdaRole.Arn
+        AutoPublishAlias: live
+
+    LambdaRole:
+      Type: AWS::IAM::Role
+      Properties:
+        AssumeRolePolicyDocument:
+          Version: 2012-10-17
+          Statement:
+            - Effect: Allow
+              Principal:
+                Service:
+                  - edgelambda.amazonaws.com
+                  - lambda.amazonaws.com
+              Action:
+                - sts:AssumeRole
+        ManagedPolicyArns:
+          - arn:aws:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+
+    CurrentBucket:
+      Type: AWS::S3::Bucket
+
+    NextBucket:
+      Type: AWS::S3::Bucket
+
+    CurrentBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+          Bucket:
+            Ref: CurrentBucket
+          PolicyDocument:
+              Statement:
+              - Action:
+                - s3:GetObject
+                Effect: Allow
+                Resource: !Sub arn:aws:s3:::${CurrentBucket}/*
+                Principal:
+                  CanonicalUser: !GetAtt CloudFrontIdentity.S3CanonicalUserId
+
+    NextBucketPolicy:
+      Type: AWS::S3::BucketPolicy
+      Properties:
+          Bucket:
+            Ref: NextBucket
+          PolicyDocument:
+              Statement:
+              - Action:
+                - s3:GetObject
+                Effect: Allow
+                Resource: !Sub arn:aws:s3:::${NextBucket}/*
+                Principal:
+                  CanonicalUser: !GetAtt CloudFrontIdentity.S3CanonicalUserId
+
+    CloudFrontIdentity:
+      Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+      Properties:
+        CloudFrontOriginAccessIdentityConfig:
+          Comment: Identity used to acces S3
+
+    CloudFront:
+      Type: AWS::CloudFront::Distribution
+      Properties:
+        DistributionConfig:
+          Enabled: true
+          DefaultRootObject: index.html
+          Origins:
+            - Id: S3Origin
+              DomainName: !GetAtt CurrentBucket.RegionalDomainName
+              S3OriginConfig:
+                OriginAccessIdentity: !Sub origin-access-identity/cloudfront/${CloudFrontIdentity}
+          DefaultCacheBehavior:
+                TargetOriginId: S3Origin
+                ViewerProtocolPolicy: https-only
+                ForwardedValues:
+                  QueryString: true
+                  Cookies:
+                    Forward: all
+                  Headers: ['Origin']
+                DefaultTTL: 0
+                MaxTTL: 0
+                MinTTL: 0
+                LambdaFunctionAssociations:
+                  Fn::If:
+                    - FullRelease
+                    - []
+                    - - EventType: origin-request
+                        LambdaFunctionARN: !Ref RequestLambda.Version
+                      - EventType: origin-response
+                        LambdaFunctionARN: !Ref ResponseLambda.Version
+
