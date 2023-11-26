@@ -19,7 +19,9 @@ Resources:
       Properties:
         Environment:
           Variables:
-            RELEASE_WEIGHT: !GetAtt NextBucket.DomainName
+            RELEASE_WEIGHT: !Ref ReleaseWeight
+            NEXT_BUCKET: !GetAtt NextBucket.DomainName
+            RELEASE_NAME: !Ref ReleaseName
         Handler: ./edgeHandlers/originReqHandler.handler
         Runtime: nodejs18.x
         Role: !GetAtt LambdaRole.Arn
