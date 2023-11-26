@@ -17,7 +17,7 @@ Resources:
     OriginReqHandler:
       Type: AWS::Serverless::Function
       Properties:
-        Handler: ./edgeHandlers/originResHandler.handler
+        Handler: ./edgeHandlers/originReqHandler.handler
         Runtime: nodejs18.x
         Role: !GetAtt LambdaRole.Arn
         AutoPublishAlias: live
@@ -25,7 +25,7 @@ Resources:
     OriginResHandler:
       Type: AWS::Serverless::Function
       Properties:
-        Handler: ./edgeHandlers/originReqHandler.handler
+        Handler: ./edgeHandlers/originResHandler.handler
         Runtime: nodejs18.x
         Role: !GetAtt LambdaRole.Arn
         AutoPublishAlias: live
