@@ -14,18 +14,13 @@ Conditions:
   FullRelease: !Equals [!Ref ReleaseWeight, 100]
 
 Resources:
-    RequestLambda:
+    OriginReqHandler:
       Type: AWS::Serverless::Function
       Properties:
-        Environment:
-          Variables:
-            RELEASE_WEIGHT: !Ref ReleaseWeight
-            NEXT_BUCKET: !GetAtt NextBucket.DomainName
-            RELEASE_NAME: !Ref ReleaseName
-        Handler: ./edgeHandlers/originReqHandler.handler
         Runtime: nodejs18.x
         Role: !GetAtt LambdaRole.Arn
         AutoPublishAlias: live
+        Handler: ./edgeHandlers/originReqHandler.handler
 
     ResponseLambda:
       Type: AWS::Serverless::Function
@@ -134,7 +129,7 @@ Resources:
                     - FullRelease
                     - []
                     - - EventType: origin-request
-                        LambdaFunctionARN: !Ref RequestLambda.Version
+                        LambdaFunctionARN: !Ref OriginReqHandler.Version
                       - EventType: origin-response
                         LambdaFunctionARN: !Ref ResponseLambda.Version
 

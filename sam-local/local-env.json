@@ -1,7 +1,0 @@
-{
-  "Parameters": {
-    "RELEASE_WEIGHT": 50,
-    "NEXT_BUCKET": "I-DUNNO",
-    "RELEASE_NAME": "MY-RELEASE-NAME"
-  }
-}

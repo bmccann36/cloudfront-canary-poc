@@ -1,0 +1,37 @@
+{
+  "Records": [
+    {
+      "cf": {
+        "config": {
+          "distributionDomainName": "dqkgspkk418kk.cloudfront.net",
+          "distributionId": "EPFVUYTJJOEVT",
+          "eventType": "origin-request",
+          "requestId": "U9CzBe2EX3KycKDTrgJxcRmFg4w_M_S_38hen_lhFu7iDzP7pTLKOQ=="
+        },
+        "request": {
+          "clientIp": "108.41.138.159",
+          "headers": {
+            "host": [
+              {
+                "key": "Host",
+                "value": "cloudfront-canary-poc-currentbucket-9tteolqz6fi8.s3.us-east-1.amazonaws.com"
+              }
+            ]
+          },
+          "method": "GET",
+          "origin": {
+            "s3": {
+              "authMethod": "origin-access-identity",
+              "customHeaders": {},
+              "domainName": "cloudfront-canary-poc-currentbucket-9tteolqz6fi8.s3.us-east-1.amazonaws.com",
+              "path": "",
+              "region": "us-east-1"
+            }
+          },
+          "querystring": "",
+          "uri": "/index.html"
+        }
+      }
+    }
+  ]
+}
