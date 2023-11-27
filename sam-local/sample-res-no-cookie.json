@@ -1,0 +1,187 @@
+{
+  "Records": [
+    {
+      "cf": {
+        "config": {
+          "distributionDomainName": "dqkgspkk418kk.cloudfront.net",
+          "distributionId": "EPFVUYTJJOEVT",
+          "eventType": "origin-response",
+          "requestId": "T_EnZ47jNHGXXcBWUj7hF_WEQtLqcjVVHHfyc3R8Vm0kjey-Sk2rZg=="
+        },
+        "request": {
+          "clientIp": "108.41.138.159",
+          "headers": {
+            "host": [
+              {
+                "key": "host",
+                "value": "cloudfront-canary-poc-nextbucket-x2idzmcx1daj.s3.amazonaws.com"
+              }
+            ],
+            "x-forwarded-for": [
+              {
+                "key": "X-Forwarded-For",
+                "value": "108.41.138.159"
+              }
+            ],
+            "user-agent": [
+              {
+                "key": "User-Agent",
+                "value": "Amazon CloudFront"
+              }
+            ],
+            "via": [
+              {
+                "key": "Via",
+                "value": "1.1 a8894be3cc09919d8cad0be355a10772.cloudfront.net (CloudFront)"
+              }
+            ],
+            "accept-encoding": [
+              {
+                "key": "Accept-Encoding",
+                "value": "gzip"
+              }
+            ],
+            "sec-ch-ua": [
+              {
+                "key": "sec-ch-ua",
+                "value": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\""
+              }
+            ],
+            "sec-ch-ua-mobile": [
+              {
+                "key": "sec-ch-ua-mobile",
+                "value": "?0"
+              }
+            ],
+            "sec-ch-ua-platform": [
+              {
+                "key": "sec-ch-ua-platform",
+                "value": "\"macOS\""
+              }
+            ],
+            "upgrade-insecure-requests": [
+              {
+                "key": "Upgrade-Insecure-Requests",
+                "value": "1"
+              }
+            ],
+            "sec-purpose": [
+              {
+                "key": "Sec-Purpose",
+                "value": "prefetch;prerender"
+              }
+            ],
+            "purpose": [
+              {
+                "key": "Purpose",
+                "value": "prefetch"
+              }
+            ],
+            "sec-fetch-site": [
+              {
+                "key": "Sec-Fetch-Site",
+                "value": "none"
+              }
+            ],
+            "sec-fetch-mode": [
+              {
+                "key": "Sec-Fetch-Mode",
+                "value": "navigate"
+              }
+            ],
+            "sec-fetch-user": [
+              {
+                "key": "Sec-Fetch-User",
+                "value": "?1"
+              }
+            ],
+            "sec-fetch-dest": [
+              {
+                "key": "Sec-Fetch-Dest",
+                "value": "document"
+              }
+            ]
+          },
+          "method": "GET",
+          "origin": {
+            "s3": {
+              "authMethod": "origin-access-identity",
+              "customHeaders": {},
+              "domainName": "cloudfront-canary-poc-nextbucket-x2idzmcx1daj.s3.amazonaws.com",
+              "path": "",
+              "region": "us-east-1"
+            }
+          },
+          "querystring": "",
+          "uri": "/index.html"
+        },
+        "response": {
+          "headers": {
+            "x-amz-id-2": [
+              {
+                "key": "x-amz-id-2",
+                "value": "g12n0O0ha8pfeLdfVXKP5qqMxN5agYXHJYnmq5QfGK8NhYFYuPjz6QsmQoV/POHTTBKm+KhiNcI="
+              }
+            ],
+            "x-amz-request-id": [
+              {
+                "key": "x-amz-request-id",
+                "value": "3JKC9MSA1RBQP0VP"
+              }
+            ],
+            "date": [
+              {
+                "key": "Date",
+                "value": "Mon, 27 Nov 2023 11:42:27 GMT"
+              }
+            ],
+            "last-modified": [
+              {
+                "key": "Last-Modified",
+                "value": "Sun, 26 Nov 2023 13:45:21 GMT"
+              }
+            ],
+            "etag": [
+              {
+                "key": "ETag",
+                "value": "\"7c19560f863c5f21ef4401c3671029a4\""
+              }
+            ],
+            "x-amz-server-side-encryption": [
+              {
+                "key": "x-amz-server-side-encryption",
+                "value": "AES256"
+              }
+            ],
+            "accept-ranges": [
+              {
+                "key": "Accept-Ranges",
+                "value": "bytes"
+              }
+            ],
+            "server": [
+              {
+                "key": "Server",
+                "value": "AmazonS3"
+              }
+            ],
+            "content-type": [
+              {
+                "key": "Content-Type",
+                "value": "text/html"
+              }
+            ],
+            "content-length": [
+              {
+                "key": "Content-Length",
+                "value": "23"
+              }
+            ]
+          },
+          "status": "200",
+          "statusDescription": "OK"
+        }
+      }
+    }
+  ]
+}

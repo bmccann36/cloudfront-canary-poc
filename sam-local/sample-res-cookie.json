@@ -1,0 +1,145 @@
+{
+  "Records": [
+    {
+      "cf": {
+        "config": {
+          "distributionDomainName": "dqkgspkk418kk.cloudfront.net",
+          "distributionId": "EPFVUYTJJOEVT",
+          "eventType": "origin-response",
+          "requestId": "nV_VnYU8nTLGvHs3Fcqo9PtYHDt1CScE4KILTNySedb4Ij3rZ5eyTw=="
+        },
+        "request": {
+          "clientIp": "108.41.138.159",
+          "headers": {
+            "host": [
+              {
+                "key": "host",
+                "value": "cloudfront-canary-poc-nextbucket-x2idzmcx1daj.s3.amazonaws.com"
+              }
+            ],
+            "cookie": [
+              {
+                "key": "Cookie",
+                "value": "v2=999"
+              }
+            ],
+            "x-forwarded-for": [
+              {
+                "key": "X-Forwarded-For",
+                "value": "108.41.138.159"
+              }
+            ],
+            "user-agent": [
+              {
+                "key": "User-Agent",
+                "value": "Amazon CloudFront"
+              }
+            ],
+            "via": [
+              {
+                "key": "Via",
+                "value": "1.1 a8894be3cc09919d8cad0be355a10772.cloudfront.net (CloudFront)"
+              }
+            ],
+            "accept-encoding": [
+              {
+                "key": "Accept-Encoding",
+                "value": "gzip"
+              }
+            ],
+            "sec-ch-ua": [
+              {
+                "key": "sec-ch-ua",
+                "value": "\"Google Chrome\";v=\"119\", \"Chromium\";v=\"119\", \"Not?A_Brand\";v=\"24\""
+              }
+            ],
+            "sec-ch-ua-mobile": [
+              {
+                "key": "sec-ch-ua-mobile",
+                "value": "?0"
+              }
+            ],
+            "sec-ch-ua-platform": [
+              {
+                "key": "sec-ch-ua-platform",
+                "value": "\"macOS\""
+              }
+            ],
+            "sec-fetch-site": [
+              {
+                "key": "Sec-Fetch-Site",
+                "value": "same-origin"
+              }
+            ],
+            "sec-fetch-mode": [
+              {
+                "key": "Sec-Fetch-Mode",
+                "value": "no-cors"
+              }
+            ],
+            "sec-fetch-dest": [
+              {
+                "key": "Sec-Fetch-Dest",
+                "value": "image"
+              }
+            ]
+          },
+          "method": "GET",
+          "origin": {
+            "s3": {
+              "authMethod": "origin-access-identity",
+              "customHeaders": {},
+              "domainName": "cloudfront-canary-poc-nextbucket-x2idzmcx1daj.s3.amazonaws.com",
+              "path": "",
+              "region": "us-east-1"
+            }
+          },
+          "querystring": "",
+          "uri": "/favicon.ico"
+        },
+        "response": {
+          "headers": {
+            "x-amz-request-id": [
+              {
+                "key": "x-amz-request-id",
+                "value": "8CDSWVN6HT654HAW"
+              }
+            ],
+            "x-amz-id-2": [
+              {
+                "key": "x-amz-id-2",
+                "value": "QO9WUs849mTYyHUrziMK7QWA83YoqdKdkwqF1TNhrW1E58zFjshjwONiqCOxynC30fXRJAzbSbA="
+              }
+            ],
+            "date": [
+              {
+                "key": "Date",
+                "value": "Mon, 27 Nov 2023 11:42:36 GMT"
+              }
+            ],
+            "server": [
+              {
+                "key": "Server",
+                "value": "AmazonS3"
+              }
+            ],
+            "content-type": [
+              {
+                "key": "Content-Type",
+                "value": "application/xml"
+              }
+            ],
+            "transfer-encoding": [
+              {
+                "key": "Transfer-Encoding",
+                "value": "chunked"
+              }
+            ]
+          },
+          "status": "403",
+          "statusDescription": "Forbidden"
+        }
+      }
+    }
+  ]
+}

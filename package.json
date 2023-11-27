@@ -1,0 +1,12 @@
+{
+  "name": "cloudfront-canary-poc",
+  "version": "1.0.0",
+  "description": "sam local invoke RequestLambda -e sam-local/test-req-event.json --env-vars sam-local/local-env.json",
+  "main": "inject-config.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
